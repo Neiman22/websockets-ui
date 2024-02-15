@@ -1,15 +1,30 @@
-import * as WebSocket from 'ws';
-import { WebSocketMessage } from '../types/types';
+export const commandsHandler = (message: string): string => {
+  let response;
 
-export const commandsHandler = (ws: WebSocket, message: string) => {
   try {
-    const parsedMessage: WebSocketMessage = JSON.parse(message);
-    handleMessage(ws, parsedMessage);
+    const parsedMessage = JSON.parse(message);
+
+    switch(parsedMessage.type) {
+      case 'reg':
+        response = {
+          type: 'reg',
+          data: JSON.stringify ({
+            name: JSON.parse(parsedMessage.data).name,
+            index: 0,
+            error: false,
+            errorText: '',
+          }),
+          id: 0,
+        }
+      break;
+      default:
+        console.log('Unknown message type:', parsedMessage.type);
+      break;
+    }
   } catch (error) {
     console.error('Error parsing message:', error);
   }
+
+  return JSON.stringify(response);
 }
 
-const handleMessage = (ws: WebSocket, message: WebSocketMessage) => {
-  console.log('Handle message');
-}
