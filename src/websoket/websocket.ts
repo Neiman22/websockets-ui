@@ -1,5 +1,6 @@
 import { WebSocketServer } from 'ws';
-import { commandsHandler } from '../commands/commandsHandler';
+import { handelRegistration } from '../commands/handelRegistration';
+import { MessageType } from '../types/types';
 
 export const startWebSocketServer = () => {
   const WS_PORT = 3000;
@@ -10,9 +11,16 @@ export const startWebSocketServer = () => {
     ws.on('error', console.error);
   
     ws.on('message', (data: string) => {
-      const resp = commandsHandler(data);
-      console.log(resp);
-      ws.send(resp);
+      const message: MessageType = JSON.parse(data);
+
+      switch (message.type) {
+        case 'reg':
+          handelRegistration(ws, message);
+          break;
+        default:
+          console.log('Unknown message type:', message.type);
+          break;
+      }
     });
   });
 };

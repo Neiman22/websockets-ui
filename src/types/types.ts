@@ -1,22 +1,19 @@
-export interface Player {
-  name: string;
-  password: string;
-}
-
-export interface WebSocketMessage {
+export interface MessageType {
   type: string;
   data: any;
   id: number;
 }
 
-export interface RegistrationResponse {
-  type: string;
-  data: {
-      name: string;
-      index?: number;
-      error: boolean;
-      errorText?: string;
-  };
-  id: number;
+export interface IPlayer {
+  name: string;
+  password: string;
+  playerNumber: number;
 }
 
+export interface IRoom {
+  roomId: number;
+  roomUsers: {
+    name: string,
+    index: number,
+  }[];
+}
