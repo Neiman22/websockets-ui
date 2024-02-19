@@ -1,13 +1,15 @@
-import { IRoom } from "../types/types";
+import { IPlayer, IRoom } from "../types/types";
 
-let lastNumber = 0;
+let lastPlayerNumber = 0;
 
 export function incrementLastNumber() {
-  lastNumber++;
+  lastPlayerNumber++;
 }
 
 export function getLastNumber() {
-  return lastNumber;
+  return lastPlayerNumber;
 }
 
 export const rooms: IRoom[] = [];
+export const players: IPlayer[] = [];
+export const winners = []

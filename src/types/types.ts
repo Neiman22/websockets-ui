@@ -8,6 +8,7 @@ export interface IPlayer {
   name: string;
   password: string;
   playerNumber: number;
+  wins: number;
 }
 
 export interface IRoom {
