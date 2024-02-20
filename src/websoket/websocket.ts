@@ -1,5 +1,5 @@
 import { WebSocketServer } from 'ws';
-import { handelRegistration } from '../commands/handelRegistration';
+import { handleReg, updateRoom, updateWinners, createRoom } from '../commands/handleCommands';
 import { MessageType } from '../types/types';
 
 export const startWebSocketServer = () => {
@@ -15,7 +15,13 @@ export const startWebSocketServer = () => {
 
       switch (message.type) {
         case 'reg':
-          handelRegistration(ws, message);
+          handleReg(ws, message);
+          updateRoom(ws);
+          updateWinners(ws);
+          break;
+        case 'create_room':
+          createRoom();
+          updateRoom(ws);
           break;
         default:
           console.log('Unknown message type:', message.type);

@@ -12,4 +12,4 @@ export function getLastNumber() {
 
 export const rooms: IRoom[] = [];
 export const players: IPlayer[] = [];
-export const winners = []
+export const winners = [];
