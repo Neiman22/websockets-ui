@@ -7,14 +7,19 @@ export interface MessageType {
 export interface IPlayer {
   name: string;
   password: string;
-  playerNumber: number;
-  wins: number;
+  index: number;
+  gameId?: number | string;
 }
 
 export interface IRoom {
-  roomId: number;
+  roomId: number,
   roomUsers: {
     name: string,
     index: number,
   }[];
+}
+
+export interface IWinner {
+  name: string,
+  wins: number,
 }
